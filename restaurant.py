@@ -13,7 +13,7 @@ class Restaurant:
         self.latitude = latitude
         self.longitude  = longitude
         self.website = website
-        slef.menuUrl = menuUrl
+        self.menuUrl = menuUrl
 
 class Food:
     def __init__(self,id,menuname,menudescription,cost)
