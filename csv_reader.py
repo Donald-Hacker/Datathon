@@ -1,4 +1,6 @@
 
+import restaurant
+
 
 # Names of Files
 csv_file = "data.csv"
@@ -15,3 +17,7 @@ for line in data:
     line = line.rstrip('\n').split(',')
     print(line)
 print(properties)
+
+
+
+#sort
