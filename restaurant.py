@@ -2,10 +2,9 @@
 #This is a restaurant object
 
 class Restaurant:
-    def __init__(self,id,category,country,province,city,address,postalcode,latitude,longitude,website,menuUrl):
+    def __init__(self,id,category,province,city,address,postalcode,latitude,longitude,website,menuUrl):
         self.id  = id
         self.category = category
-        self.country = country
         self.province = province
         self.city = city
         self.address = address
@@ -14,6 +13,7 @@ class Restaurant:
         self.longitude  = longitude
         self.website = website
         self.menuUrl = menuUrl
+        self.menu = []
 
 class Food:
     def __init__(self,id,menuname,menudescription,cost):
