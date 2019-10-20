@@ -97,10 +97,6 @@ for line in data:
 
 
 #raw data calculations
-
-costTotalRaw = 0
-countRaw = 0
-
 costTotal = 0
 count = 0
 
@@ -137,14 +133,8 @@ mean = costTotal/count
 mean2 = costTotal2/count2
 
 #print meanRaw,"\n"
-print countRaw
-print mean,"\n"
-print count
-print mean2,"\n"
-print count2
-
-
-print "\n",len(restaurantList)
+print "Average: ", mean," count: ", count, "\n"
+print "Average: ", mean2," count: ", count2, "\n"
 
 
 
