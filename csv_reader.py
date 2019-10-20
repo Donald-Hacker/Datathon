@@ -2,6 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from decimal import Decimal
 
 # Class Declarations
 class Restaurant(object):
@@ -75,10 +76,19 @@ for line in data:
     # if it is, then append the menu o include a new food item
     if previousId != line[0]:
         # places an NULL for empty values
+
+        if cost != '':
+            cost = float(cost)
+
+        if postalcode != '' and len(postalcode) <= 5:
+            postalcode = float(postalcode)
+
+        previousId = line[0]
         restaurantList.append(Restaurant(id,name,category,province,city,address,postalcode,latitude,longitude,website,hasMenu))
         restaurantList[len(restaurantList)-1].menu.append(Food(menuname,menudescription,cost))
-        previousId = line[0]
     else:
+        if cost != '':
+            cost = float(cost)
         restaurantList[len(restaurantList)-1].menu.append(Food(menuname,menudescription,cost))
 
 # (Yelp Data)
@@ -88,15 +98,57 @@ for line in data:
 
 #raw data calculations
 
-# mean of tacos and burrtios
-# for x in restaurantList:
-#     # remove empty data and null
-#     costTotal = 0
-#     count = 0
-#     menuSize = 0
+costTotalRaw = 0
+countRaw = 0
 
-# for x in restaurantList:
-#     print len(x.menu), "\n"
+costTotal = 0
+count = 0
+
+costTotal2 = 0
+count2 = 0
+
+
+# mean of tacos and burrtiosc
+for x in restaurantList:
+    # remove empty data and null
+
+    for y in range(len(x.menu)):
+            # raw data
+            # print(x.menu[y].cost)
+        '''if(x.menu[y].cost != ''):
+            costTotalRaw += x.menu[y].cost
+            countRaw += 1
+            '''
+        #remove O's and empty values for cost
+        if x.menu[y].cost and x.menu[y].cost < 200 and x.menu[y].cost != 0.0:
+
+            # print(x.menu[y].cost)
+            costTotal += x.menu[y].cost
+            count += 1
+
+        if x.menu[y].cost and x.menu[y].cost < 100 and x.menu[y].cost != 0.0:
+
+            # print(x.menu[y].cost)
+            costTotal2 += x.menu[y].cost
+            count2 += 1
+
+#meanRaw = costTotalRaw/countRaw
+mean = costTotal/count
+mean2 = costTotal2/count2
+
+#print meanRaw,"\n"
+print countRaw
+print mean,"\n"
+print count
+print mean2,"\n"
+print count2
+
+
+print "\n",len(restaurantList)
+
+
+
+
 
 
 
