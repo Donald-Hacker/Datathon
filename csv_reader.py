@@ -1,9 +1,10 @@
 import csv
 
-#import restaurant as File
-class Restaurant:
-    def __init__(self,id,category,province,city,address,postalcode,latitude,longitude,website,menuUrl):
+# Class Declarations
+class Restaurant(object):
+    def __init__(self,id=None,name=None,category=None,province=None,city=None,address=None,postalcode=None,latitude=None,longitude=None,website=None,menuUrl=None):
         self.id  = id
+        self.name = name
         self.category = category
         self.province = province
         self.city = city
@@ -15,12 +16,15 @@ class Restaurant:
         self.menuUrl = menuUrl
         self.menu = []
 
-class Food:
-    def __init__(self,id,menuname,menudescription,cost):
-        self.id = id
+class Food(object):
+    def __init__(self,menuname=None,menudescription=None,cost=None):
         self.menuname = menuname
         self.menudescription = menudescription
         self.cost = cost
+
+    def __str__(self):
+        return self.menuname
+
 
 
 
@@ -31,17 +35,10 @@ data = csv.reader(csv_file)
 
 restaurantList = []
 hasMenu = True
-previousId = "0";
+previousId = "first"
 
 # Loops through the csv file line by line
 for line in data:
-    # turns the entire line into an array
-
-
-    #previous id is derived from the Restaurant class
-    if previousId != "0":
-        previousId = restaurantList[len(restaurantList)-2]
-
 
     # checks to see if there is a menu on the website
     if line[7]:
@@ -49,12 +46,11 @@ for line in data:
     else:
         hasMenu = False
 
-
-    # checks to see if the its the same restaurant
-    if previousId == line[0] or previousId == '0':
-        restaurantList.append(Restaurant(previousId,line[2],line[13],line[3],line[1],line[12],line[5],line[6],line[14],hasMenu))
+    # checks to see if the same restaruant is repeated,
+    # if it is, then append the menu o include a new food item
+    if previousId != line[0]:
+        restaurantList.append(Restaurant(line[0],line[11],line[2],line[13],line[3],line[1],line[12],line[5],line[6],line[14],hasMenu))
+        restaurantList[len(restaurantList)-1].menu.append(Food(line[10],line[9],line[8]))
+        previousId = line[0]
     else:
-        restaurantList.append(Restaurant(line[0],line[2],line[13],line[3],line[1],line[12],line[5],line[6],line[14],hasMenu))
-
-
-print(restaurantList)
+        restaurantList[len(restaurantList)-1].menu.append(Food(line[10],line[9],line[8]))
