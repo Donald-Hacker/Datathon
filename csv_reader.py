@@ -42,6 +42,7 @@ data.next();
 
 
 
+
 #test and correct Data
 
 
@@ -133,14 +134,16 @@ mean = costTotal/count
 mean2 = costTotal2/count2
 
 #print meanRaw,"\n"
-print "Average: ", mean," count: ", count, "\n"
-print "Average: ", mean2," count: ", count2, "\n"
+# print "Average: ", mean," count: ", count, "\n"
+# print "Average: ", mean2," count: ", count2, "\n"
 
 
 
-
-
-
+#general description of raw data
+data2 = pd.read_csv("just tacos and burritos.csv")
+data3 = data2["menus.amountMin"]
+descriptive_stats = data3.describe()
+print descriptive_stats
 
 
 #How to access The data
